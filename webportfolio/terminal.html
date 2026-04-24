@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=Fira+Code:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary": "#00363a",
+                    "on-secondary-container": "#0f6d00",
+                    "surface-tint": "#00dbe9",
+                    "on-surface": "#dae2fd",
+                    "surface-dim": "#0b1326",
+                    "on-error": "#690005",
+                    "surface-container": "#171f33",
+                    "on-surface-variant": "#b9cacb",
+                    "background": "#0b1326",
+                    "surface-container-high": "#222a3d",
+                    "on-primary-fixed-variant": "#004f54",
+                    "secondary-fixed-dim": "#2ae500",
+                    "error": "#ffb4ab",
+                    "tertiary-fixed": "#e9ddff",
+                    "primary": "#dbfcff",
+                    "outline-variant": "#3b494b",
+                    "on-secondary-fixed": "#022100",
+                    "on-primary-container": "#006970",
+                    "inverse-on-surface": "#283044",
+                    "surface-container-low": "#131b2e",
+                    "on-tertiary-fixed-variant": "#5700c9",
+                    "surface-container-low": "#131b2e",
+                    "tertiary-container": "#e1d2ff",
+                    "on-tertiary-fixed": "#23005b",
+                    "inverse-primary": "#006970",
+                    "tertiary": "#faf3ff",
+                    "surface-container-lowest": "#060e20",
+                    "on-secondary-fixed-variant": "#095300",
+                    "on-primary-fixed": "#002022",
+                    "secondary-fixed": "#79ff5b",
+                    "error-container": "#93000a",
+                    "surface-variant": "#2d3449",
+                    "surface-bright": "#31394d",
+                    "on-tertiary": "#3c0090",
+                    "surface": "#0b1326",
+                    "primary-fixed": "#7df4ff",
+                    "outline": "#849495",
+                    "on-secondary": "#053900",
+                    "tertiary-fixed-dim": "#d1bcff",
+                    "on-background": "#dae2fd",
+                    "on-tertiary-container": "#7213ff",
+                    "on-error-container": "#ffdad6",
+                    "secondary-container": "#2ff801",
+                    "secondary": "#d7ffc5",
+                    "primary-fixed-dim": "#00dbe9",
+                    "inverse-surface": "#dae2fd",
+                    "primary-container": "#00f0ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xs": "8px",
+                    "xl": "80px",
+                    "lg": "48px",
+                    "gutter": "24px",
+                    "base": "4px",
+                    "sm": "16px",
+                    "md": "24px",
+                    "margin": "32px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-lg": ["Space Grotesk"],
+                    "label-caps": ["Space Grotesk"],
+                    "headline-md": ["Space Grotesk"],
+                    "code-sm": ["Fira Code", "monospace"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                    "headline-md": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "code-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .circuit-bg {
+            background-image: linear-gradient(to right, rgba(0, 240, 255, 0.05) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(0, 240, 255, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        .blinking-cursor {
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+            from, to { border-color: transparent }
+            50% { border-color: #00f0ff }
+        }
+        .scanline {
+            background: linear-gradient(to bottom, rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%);
+            background-size: 100% 4px;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="bg-surface-dim font-body-md text-on-surface min-h-screen flex flex-col">
+<!-- Top Navigation Anchor -->
+<header class="fixed top-0 w-full border-b bg-slate-950/80 backdrop-blur-md border-white/10 z-50 flex justify-between items-center px-8 h-16">
+<div class="font-space-grotesk tracking-widest text-xl font-bold text-cyan-400 uppercase">
+            SYSTEM_ARCHITECT
+        </div>
+<nav class="hidden md:flex gap-8 items-center h-full">
+<a class="text-slate-400 hover:text-slate-100 transition-colors font-space-grotesk tracking-tighter uppercase text-sm" href="#">Architecture</a>
+<a class="text-slate-400 hover:text-slate-100 transition-colors font-space-grotesk tracking-tighter uppercase text-sm" href="#">Systems</a>
+<a class="text-slate-400 hover:text-slate-100 transition-colors font-space-grotesk tracking-tighter uppercase text-sm" href="#">Stack</a>
+<a class="text-cyan-400 border-b-2 border-cyan-400 pb-1 font-space-grotesk tracking-tighter uppercase text-sm" href="#">Terminal</a>
+</nav>
+<button class="bg-transparent border border-cyan-400 text-cyan-400 px-4 py-1.5 rounded-none font-space-grotesk tracking-tighter text-xs hover:bg-cyan-400 hover:text-slate-950 transition-all duration-300">
+            DOWNLOAD_CV
+        </button>
+</header>
+<!-- Main Canvas: Terminal Interface -->
+<main class="flex-grow pt-16 flex items-center justify-center p-md md:p-lg relative overflow-hidden">
+<!-- Background: Circuit Board Aesthetic -->
+<div class="absolute inset-0 z-0 opacity-40 circuit-bg"></div>
+<div class="absolute inset-0 z-0 bg-gradient-to-t from-surface-dim via-transparent to-surface-dim"></div>
+<!-- Visual Trace Elements -->
+<div class="absolute top-1/4 left-10 w-64 h-1 border-l-4 border-cyan-400/30"></div>
+<div class="absolute bottom-1/4 right-10 w-1 h-64 border-t-4 border-cyan-400/30"></div>
+<!-- Terminal Container -->
+<section class="relative z-10 w-full max-w-5xl aspect-video bg-slate-950/90 border border-white/10 flex flex-col backdrop-blur-xl shadow-2xl overflow-hidden rounded-none">
+<!-- Terminal Header -->
+<div class="flex justify-between items-center bg-slate-900 px-4 py-2 border-b border-white/5">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 bg-red-500/50 rounded-full"></div>
+<div class="w-3 h-3 bg-yellow-500/50 rounded-full"></div>
+<div class="w-3 h-3 bg-green-500/50 rounded-full"></div>
+<span class="ml-4 font-code-sm text-xs text-slate-500 tracking-widest uppercase">root@system_architect: ~/navigation</span>
+</div>
+<div class="flex gap-4">
+<span class="font-code-sm text-xs text-cyan-400/50 uppercase">Session: active</span>
+<span class="material-symbols-outlined text-slate-500 text-sm">settings_ethernet</span>
+</div>
+</div>
+<!-- Terminal Body -->
+<div class="flex-grow p-6 font-code-sm text-cyan-400 overflow-y-auto relative">
+<div class="scanline absolute inset-0 opacity-20"></div>
+<!-- Greeting -->
+<div class="mb-6">
+<p class="text-on-primary-container font-bold text-lg mb-1">SYSTEM_ARCHITECT OS v1.0.0</p>
+<p class="text-slate-500 text-xs mb-4">ESTABLISHED SECURE_CONNECTION // PORT: 8080 // ARCH: X64_RUST</p>
+<p class="mb-2">Last login: Fri Oct 25 14:22:09 on ttys004</p>
+</div>
+<!-- Command Output History -->
+<div class="space-y-4">
+<div class="flex flex-col">
+<div class="flex gap-2">
+<span class="text-secondary-fixed-dim">guest@portfolio:~$</span>
+<span>help</span>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-2 mt-2 text-slate-400 border-l border-white/10 pl-4 py-1">
+<span>ls</span>
+<span>cd [dir]</span>
+<span>clear</span>
+<span>whoami</span>
+<span>cat [file]</span>
+<span>ssh</span>
+<span>status</span>
+<span>exit</span>
+</div>
+</div>
+<div class="flex flex-col">
+<div class="flex gap-2">
+<span class="text-secondary-fixed-dim">guest@portfolio:~$</span>
+<span>ls -la</span>
+</div>
+<div class="mt-2 pl-4 text-slate-400 grid grid-cols-1 gap-1">
+<div class="flex items-center justify-between hover:bg-white/5 transition-colors p-1">
+<span class="flex items-center gap-4">
+<span class="text-xs">drwxr-xr-x</span>
+<span class="text-cyan-400">projects/</span>
+</span>
+<span class="text-[10px] opacity-40">SYSTEM_ENTITY</span>
+</div>
+<div class="flex items-center justify-between hover:bg-white/5 transition-colors p-1">
+<span class="flex items-center gap-4">
+<span class="text-xs">drwxr-xr-x</span>
+<span class="text-cyan-400">experience/</span>
+</span>
+<span class="text-[10px] opacity-40">TIMELINE_LOG</span>
+</div>
+<div class="flex items-center justify-between hover:bg-white/5 transition-colors p-1">
+<span class="flex items-center gap-4">
+<span class="text-xs">drwxr-xr-x</span>
+<span class="text-cyan-400">tech_stack/</span>
+</span>
+<span class="text-[10px] opacity-40">DEPENDENCY_GRAPH</span>
+</div>
+<div class="flex items-center justify-between hover:bg-white/5 transition-colors p-1">
+<span class="flex items-center gap-4">
+<span class="text-xs">-rw-r--r--</span>
+<span class="text-secondary-fixed">readme.md</span>
+</span>
+<span class="text-[10px] opacity-40">MARKDOWN</span>
+</div>
+</div>
+</div>
+<!-- Pulse Status Indicator -->
+<div class="flex items-center gap-3 bg-white/5 p-4 border-l-2 border-cyan-400">
+<div class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></div>
+<span class="text-xs tracking-tighter uppercase text-slate-300">System Healthy. Network Latency: 12ms. Core Temperature: Optimal.</span>
+</div>
+<!-- Active Prompt -->
+<div class="flex gap-2 items-center">
+<span class="text-secondary-fixed-dim">guest@portfolio:~$</span>
+<span class="flex items-center gap-1">
+                            cd projects
+                            <span class="w-2 h-5 border-l-2 border-cyan-400 blinking-cursor"></span>
+</span>
+</div>
+</div>
+</div>
+<!-- Terminal Footer Status Bar -->
+<div class="bg-cyan-400 px-4 py-1 flex justify-between items-center text-slate-950 font-code-sm text-[10px] font-bold">
+<div class="flex gap-6">
+<span class="uppercase">UTF-8</span>
+<span class="uppercase">Mode: Navigation</span>
+<span class="uppercase">Ln 24, Col 12</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[12px]">cloud_upload</span>
+<span class="uppercase">Push Sync: Enabled</span>
+</div>
+</div>
+</section>
+<!-- Decorative Info Overlays (Bento Style) -->
+<aside class="absolute right-xl top-1/2 -translate-y-1/2 hidden xl:flex flex-col gap-4 w-64">
+<div class="bg-slate-950/60 border border-white/5 p-4 backdrop-blur-md">
+<p class="text-[10px] text-slate-500 uppercase tracking-widest mb-2 font-space-grotesk">Node Status</p>
+<div class="space-y-2">
+<div class="flex justify-between items-center">
+<span class="text-xs font-code-sm">API_GATEWAY</span>
+<span class="text-secondary-fixed text-[10px] uppercase">Active</span>
+</div>
+<div class="h-1 bg-white/10 w-full">
+<div class="h-full bg-cyan-400 w-3/4"></div>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-xs font-code-sm">LOAD_BALANCER</span>
+<span class="text-secondary-fixed text-[10px] uppercase">Active</span>
+</div>
+<div class="h-1 bg-white/10 w-full">
+<div class="h-full bg-cyan-400 w-1/2"></div>
+</div>
+</div>
+</div>
+<div class="bg-slate-950/60 border border-white/5 p-4 backdrop-blur-md">
+<p class="text-[10px] text-slate-500 uppercase tracking-widest mb-2 font-space-grotesk">Network Map</p>
+<div class="aspect-square bg-slate-900 border border-white/10 p-2 flex items-center justify-center relative">
+<img alt="Abstract digital network matrix background with neon lines and data points" class="opacity-30 grayscale invert" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0yXl12XN0hweq2mH5HnHY_-kFLhg5Sb86mwB0NIQn1Sm3sDcBgzULQf97Gngb1LaKmx9F_V5Y_ENvBSG4W8J3YeJd4SZrkwA_J-z9tXp5wUjETdoYrhp8jCRMs4liKXqZHLqb5BVYc7myMW2WBatMbMEthTcbPeoLnWwQaF7_AwEj4yWOr6_OcQQdpVZn0gBr2zbv4-nliat6PMl0XUnTApX3tYZYytiqNTUDOox_5ZJ7Od08m8evy70sJlMT6zabjADz_4MUSlM"/>
+<div class="absolute inset-0 flex flex-col items-center justify-center gap-1">
+<div class="w-2 h-2 rounded-full bg-cyan-400"></div>
+<div class="w-1 h-8 bg-cyan-400/20"></div>
+<div class="flex gap-4">
+<div class="w-1.5 h-1.5 rounded-full bg-cyan-400/60"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-cyan-400/60"></div>
+</div>
+</div>
+</div>
+</div>
+</aside>
+</main>
+<!-- Footer Anchor -->
+<footer class="bg-slate-950 border-t border-white/10 w-full px-12 py-8 flex flex-col md:flex-row justify-between items-center relative z-20">
+<div class="text-cyan-400 font-bold font-mono text-xs uppercase tracking-widest mb-4 md:mb-0">
+            © 2024 // ROOT_ACCESS_GRANTED
+        </div>
+<div class="flex gap-12">
+<a class="text-slate-500 hover:text-cyan-300 underline underline-offset-4 font-mono text-xs uppercase tracking-widest transition-all duration-300" href="#">GITHUB</a>
+<a class="text-slate-500 hover:text-cyan-300 underline underline-offset-4 font-mono text-xs uppercase tracking-widest transition-all duration-300" href="#">LINKEDIN</a>
+<a class="text-slate-500 hover:text-cyan-300 underline underline-offset-4 font-mono text-xs uppercase tracking-widest transition-all duration-300" href="#">STACK_OVERFLOW</a>
+</div>
+</footer>
+</body></html>
